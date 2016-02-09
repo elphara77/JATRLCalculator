@@ -8,6 +8,14 @@ public class Engine {
 	private static String aStr = null;
 	private static Double b = null;
 	private static String bStr = null;
+	private static String op = null;
+	
+	public static Double minus() {
+		if (a == null || b == null) {
+			throw new RuntimeException("ERREUR CALCUL");
+		}
+		return a - b;
+	}
 
 	public static Double plus() {
 		if (a == null || b == null) {
@@ -40,6 +48,14 @@ public class Engine {
 
 	public static String getbStr() {
 		return bStr;
+	}
+
+	public static String getOp() {
+		return op;
+	}
+
+	public static void setOp(String op) {
+		Engine.op = op;
 	}
 
 }

@@ -85,6 +85,7 @@ public class JFrame extends javax.swing.JFrame {
 		btnPlus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Engine.setOp("+");
 				String aStr = textField.getText();
 				Engine.setA(aStr);
 				textField.setText(textField.getText() + "+");
@@ -106,6 +107,15 @@ public class JFrame extends javax.swing.JFrame {
 		panel.add(btn6);
 
 		JButton btnMinus = new JButton("-");
+		btnMinus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Engine.setOp("-");
+				String aStr = textField.getText();
+				Engine.setA(aStr);
+				textField.setText(textField.getText() + "-");
+			}
+		});
 		panel.add(btnMinus);
 
 		JButton btn1 = new JButton("1");
@@ -138,7 +148,12 @@ public class JFrame extends javax.swing.JFrame {
 				String bStr = textField.getText();
 				bStr = bStr.substring(Engine.getaStr().length() + 1, bStr.length());
 				Engine.setB(bStr);
-				Double result = Engine.plus();
+				Double result = 0.;
+				if ("+".equals(Engine.getOp())) {
+					result = Engine.plus();
+				} else if ("-".equals(Engine.getOp())) {
+					result = Engine.minus();
+				}
 				textField.setText(Utils.getString(result));
 			}
 		});
