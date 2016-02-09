@@ -1,22 +1,26 @@
 package com.htrl.utils;
 
-import com.htrl.core.Engine;
+import java.text.NumberFormat;
 
 public class Utils {
 
 	public static Double parseString(String str) {
-		return Double.parseDouble(str);
+		String doubleStr = str.replace(".", "");
+		doubleStr = doubleStr.replace(",", ".");
+		return Double.parseDouble(doubleStr);
 	}
 
 	public static String getString(Double d) {
-		return d.toString();
+		NumberFormat nf = NumberFormat.getInstance();
+		return nf.format(d);
 	}
 
 	public static void main(String[] args) {
-		String bStr = "123+456";
-		System.out.println(bStr);
-		Engine.setA("123");
-		bStr = bStr.substring(Engine.getaStr().length() + 1, bStr.length());
-		System.out.println(bStr);
+		Double[] a = new Double[] { 1., 1.1, 10.5, 10.0, 1000., 1000.5 };
+		for (Double d : a) {
+			String str = getString(d);
+			System.out.println(d + " --> " + str + " >>> " + parseString(str));
+			System.out.println("=====");
+		}
 	}
 }
