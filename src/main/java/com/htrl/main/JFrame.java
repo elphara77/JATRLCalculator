@@ -131,6 +131,15 @@ public class JFrame extends javax.swing.JFrame {
 		panel.add(btn3);
 
 		JButton btnDiv = new JButton("/");
+		btnDiv.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Engine.setOp("/");
+				String aStr = textField.getText();
+				Engine.setA(aStr);
+				textField.setText(textField.getText() + "/");
+			}
+		});
 		panel.add(btnDiv);
 
 		JButton btn0 = new JButton("0");
@@ -153,6 +162,10 @@ public class JFrame extends javax.swing.JFrame {
 					result = Engine.plus();
 				} else if ("-".equals(Engine.getOp())) {
 					result = Engine.minus();
+				} else if ("/".equals(Engine.getOp())) {
+					result = Engine.div();
+				} else if ("*".equals(Engine.getOp())) {
+					result = Engine.mult();
 				}
 				textField.setText(Utils.getString(result));
 			}
@@ -160,6 +173,15 @@ public class JFrame extends javax.swing.JFrame {
 		panel.add(btnEnter);
 
 		JButton btnX = new JButton("X");
+		btnX.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Engine.setOp("*");
+				String aStr = textField.getText();
+				Engine.setA(aStr);
+				textField.setText(textField.getText() + "*");
+			}
+		});
 		panel.add(btnX);
 	}
 

@@ -10,6 +10,20 @@ public class Engine {
 	private static String bStr = null;
 	private static String op = null;
 	
+	public static Double mult() {
+		if (a == null || b == null) {
+			throw new RuntimeException("ERREUR CALCUL");
+		}
+		return a * b;
+	}
+	
+	public static Double div() {
+		if (a == null || b == null) {
+			throw new RuntimeException("ERREUR CALCUL");
+		}
+		return a / b;
+	}
+	
 	public static Double minus() {
 		if (a == null || b == null) {
 			throw new RuntimeException("ERREUR CALCUL");
