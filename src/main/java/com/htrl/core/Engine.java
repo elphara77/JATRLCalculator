@@ -9,21 +9,21 @@ public class Engine {
 	private static Double b = null;
 	private static String bStr = null;
 	private static String op = null;
-	
+
 	public static Double mult() {
 		if (a == null || b == null) {
 			throw new RuntimeException("ERREUR CALCUL");
 		}
 		return a * b;
 	}
-	
+
 	public static Double div() {
 		if (a == null || b == null) {
 			throw new RuntimeException("ERREUR CALCUL");
 		}
 		return a / b;
 	}
-	
+
 	public static Double minus() {
 		if (a == null || b == null) {
 			throw new RuntimeException("ERREUR CALCUL");
@@ -36,6 +36,13 @@ public class Engine {
 			throw new RuntimeException("ERREUR CALCUL");
 		}
 		return a + b;
+	}
+
+	public static Double pow() {
+		if (a == null || b == null) {
+			throw new RuntimeException("ERREUR CALCUL");
+		}
+		return Math.pow(a, b);
 	}
 
 	public static Double getA() {

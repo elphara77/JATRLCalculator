@@ -5,13 +5,13 @@ import java.text.NumberFormat;
 public class Utils {
 
 	public static Double parseString(String str) {
-		String doubleStr = str.replace(".", "");
-		doubleStr = doubleStr.replace(",", ".");
+		String doubleStr = str.replace(",", ".");
 		return Double.parseDouble(doubleStr);
 	}
 
 	public static String getString(Double d) {
 		NumberFormat nf = NumberFormat.getInstance();
+		nf.setGroupingUsed(false);
 		return nf.format(d);
 	}
 

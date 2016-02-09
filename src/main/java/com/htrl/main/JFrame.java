@@ -1,6 +1,7 @@
 package com.htrl.main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.htrl.core.Engine;
 import com.htrl.utils.Utils;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class JFrame extends javax.swing.JFrame {
 
@@ -53,13 +56,15 @@ public class JFrame extends javax.swing.JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		textField = new JTextArea();
+		textField.setBackground(Color.GREEN);
+		textField.setFont(new Font("Courier", Font.PLAIN, 15));
 		textField.setRows(2);
 		contentPane.add(textField, BorderLayout.NORTH);
 		textField.setColumns(10);
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(4, 4, 0, 0));
+		panel.setLayout(new GridLayout(4, 5, 0, 0));
 
 		ActionListener btnListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,6 +99,18 @@ public class JFrame extends javax.swing.JFrame {
 
 		panel.add(btnPlus);
 
+		JButton btnExp = new JButton("^");
+		btnExp.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Engine.setOp("^");
+				String aStr = textField.getText();
+				Engine.setA(aStr);
+				textField.setText(textField.getText() + "^");
+			}
+		});
+		panel.add(btnExp);
+
 		JButton btn4 = new JButton("4");
 		btn4.addActionListener(btnListener);
 		panel.add(btn4);
@@ -120,6 +137,9 @@ public class JFrame extends javax.swing.JFrame {
 
 		JButton btn1 = new JButton("1");
 		btn1.addActionListener(btnListener);
+
+		JButton btnNewButton = new JButton("New button");
+		panel.add(btnNewButton);
 		panel.add(btn1);
 
 		JButton btn2 = new JButton("2");
@@ -144,13 +164,18 @@ public class JFrame extends javax.swing.JFrame {
 
 		JButton btn0 = new JButton("0");
 		btn0.addActionListener(btnListener);
+
+		JButton btnNewButton_1 = new JButton("New button");
+		panel.add(btnNewButton_1);
 		panel.add(btn0);
 
 		JButton btnDot = new JButton(".");
 		btnDot.addActionListener(btnListener);
 		panel.add(btnDot);
 
-		JButton btnEnter = new JButton("Enter");
+		JButton btnEnter = new JButton("");
+		btnEnter.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Enter.png")));
+		btnEnter.setForeground(Color.GREEN);
 		btnEnter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -166,6 +191,8 @@ public class JFrame extends javax.swing.JFrame {
 					result = Engine.div();
 				} else if ("*".equals(Engine.getOp())) {
 					result = Engine.mult();
+				} else if ("^".equals(Engine.getOp())) {
+					result = Engine.pow();
 				}
 				textField.setText(Utils.getString(result));
 			}
@@ -183,6 +210,9 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 		panel.add(btnX);
+
+		JButton button = new JButton("New button");
+		panel.add(button);
 	}
 
 }
