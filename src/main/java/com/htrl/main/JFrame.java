@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import com.htrl.core.Engine;
+import com.htrl.utils.Utils;
+
 public class JFrame extends javax.swing.JFrame {
 
 	/**
@@ -79,6 +82,15 @@ public class JFrame extends javax.swing.JFrame {
 		panel.add(btn9);
 
 		JButton btnPlus = new JButton("+");
+		btnPlus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String aStr = textField.getText();
+				Engine.setA(aStr);
+				textField.setText(textField.getText() + "+");
+			}
+		});
+
 		panel.add(btnPlus);
 
 		JButton btn4 = new JButton("4");
@@ -120,6 +132,16 @@ public class JFrame extends javax.swing.JFrame {
 		panel.add(btnDot);
 
 		JButton btnEnter = new JButton("Enter");
+		btnEnter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String bStr = textField.getText();
+				bStr = bStr.substring(Engine.getaStr().length() + 1, bStr.length());
+				Engine.setB(bStr);
+				Double result = Engine.plus();
+				textField.setText(Utils.getString(result));
+			}
+		});
 		panel.add(btnEnter);
 
 		JButton btnX = new JButton("X");
